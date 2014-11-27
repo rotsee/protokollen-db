@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-3 sidebar">
+
+                <h3>Search</h3>
+                <eui-searchbox field="'municipality'"></eui-searchbox> <!-- ACTION: change to field to search on -->
+                
+                 
+                 <h4>Filtrera på datum</h4>
+                <eui-daterange field="'meeting-date.date'"></eui-daterange>
+                
+                <h4>Filtrera på kommun</h4>
+                <eui-checklist field="'meeting-date.date'" size="5"></eui-checklist>
+
+                
+
+                <h4>Filtrera på kommun</h4>
+                <eui-checklist field="'county'" size="5"></eui-checklist>
+
+            </div>
+            <div class="col-xs-9 main">
+
+                <h1>Results</h1>
+                <ul>
+                    <li ng-repeat="doc in indexVM.results.hits.hits">
+                        
+                        <div>
+                            <div>{{doc._source['meeting-date'].date }}</div>
+                            <div>{{doc._source.text | limitTo:200 }} </div>
+                        </div>
+                       <!-- <small>{{ doc._source | json }}</small> -->
+                    </li>
+                </ul>
+                <eui-simple-paging></eui-simple-paging>
+            </div>
+        </div>
+    </div>
