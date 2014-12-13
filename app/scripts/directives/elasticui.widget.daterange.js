@@ -19,7 +19,7 @@ var elasticui;
                     directive.template = '\
                         <ul class="nav nav-list" eui-filter="ejs.RangeFilter(field).field(field).from(model.from).to(model.to)" eui-enabled="true"/>\
                             <li>Från: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" model="from" date="2011-01-01">\
+                                <div class="input-group" ng-controller="DatepickerCtrl" model="from">\
                                     <input type="text" class="form-control"\
                                         datepicker-popup="{{format}}"\
                                         ng-model="model.from"\
@@ -28,6 +28,7 @@ var elasticui;
                                         datepicker-options="dateOptions"\
                                         date-disabled="disabled(date, mode)"\
                                         ng-required="true"\
+                                        init-date="{{model.from}}"\
                                         close-text="Close"\
                                         ng-click="open($event)"\
                                         />\
@@ -39,7 +40,7 @@ var elasticui;
                                 </div>\
                             </li>\
                             <li>Till: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" model="to" date="2014-12-12">\
+                                <div class="input-group" ng-controller="DatepickerCtrl" model="to" date="model.to">\
                                     <input type="text" class="form-control"\
                                         datepicker-popup="{{format}}"\
                                         ng-model="model.to"\

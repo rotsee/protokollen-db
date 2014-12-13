@@ -30,7 +30,7 @@
 	                            <h4>{{doc._source.origin }}</h4>
 	                        </a>
                             <div>
-                            	<strong>Datum:</strong> {{doc._source.meeting_date | date : format : 'yyyy-MM-dd' }}
+                            	<strong>Datum:</strong> {{doc._source.meeting_date | date : 'yyyy-MM-dd' }}
                             </div>
                             <pre style="max-height: 70px;overflow-y: scroll;">{{doc._source.header }} </pre>
                         </div>
