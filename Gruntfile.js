@@ -7,6 +7,12 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var corsMiddleware = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -69,13 +75,19 @@ module.exports = function (grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 35729,
+        middleware: function (connect) {
+          return [ 
+            corsMiddleware
+          ];
+        }
       },
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
-            return [
+            return [ 
+              corsMiddleware,
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -91,6 +103,7 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
+              corsMiddleware,
               connect.static('.tmp'),
               connect.static('test'),
               connect().use(

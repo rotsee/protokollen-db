@@ -1,0 +1,20 @@
+<input type="text" class="form-control" 
+	datepicker-popup="{{format}}"
+	ng-model="vars[model]"
+	is-open="$parent.opened"
+	max-date="maxDate"
+	datepicker-options="dateOptions"
+	date-disabled="disabled(date, mode)"
+	ng-required="true"
+	close-text="Close"
+	ng-click="open($event)"
+	init-date="initDate"
+	model="{{model}}"
+	date="{{date}}"/>
+
+
+<span class="input-group-btn">
+	<button type="button" class="btn btn-default" ng-click="open($event)">
+		<i class="glyphicon glyphicon-calendar"></i>
+	</button>
+</span>

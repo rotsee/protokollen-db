@@ -1,1 +1,30 @@
-<p>Documnet with id {{documentId}}</p>
+<!-- On load -->
+<div class="loading" ng-hide="showDocument">
+	<h1>Hämtar dokument</h1>
+</div>
+
+<!-- After load -->
+<div class="document" ng-show="showDocument">
+	<!-- Success -->
+	<div ng-show="success">
+		<table class="table">
+			<tr>
+				<td><strong>Kommun:</strong></td>
+				<td>{{ document._source.origin }}</td>
+			</tr>
+			<tr>
+				<td><strong>Datum:</strong></td>
+				<td>{{ document._source.meeting_date | date : format : 'yyyy-MM-dd' }}</td>
+			</tr>
+			<tr>
+				<td><strong>Uppdaterad:</strong></td>
+				<td>{{ document._source.last_updated | date : format : 'yyyy-MM-dd' }}</td>
+			</tr>
+		</table>
+		<pre>{{document._source.text}}</pre>
+	</div>
+	<!-- Error -->
+	<div ng-hide="success">
+		<h1>Hittade inte något dokument med det här id:et.</h1>
+	</div>
+</div>

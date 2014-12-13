@@ -23,11 +23,10 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li><a ng-href="#">Start</a></li>
+          <li><a ng-href="#/search">Sök</a></li>
         </ul>
-        <h3 class="text-muted">protokollen</h3>
+        <h3 class="text-muted">§ Protokollen</h3>
       </div>
 
       <div ng-view=""></div>
@@ -82,11 +81,9 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/elastic.js/dist/elastic.js"></script>
     <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
   
-    <script src="http://rawgit.com/YousefED/ElasticUI/master/examples/demo/lib/elasticsearch.angular.js"></script>
-    <script src="http://rawgit.com/YousefED/ElasticUI/master/examples/demo/lib/elastic.js"></script>
-
     <script src="bower_components/ElasticUI/dist/elasticui.js"></script>
     <!-- endbuild -->
 
@@ -100,6 +97,8 @@
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/controllers/document.js"></script>
         <script src="scripts/controllers/meetings.js"></script>
+        
+        <script src="scripts/controllers/ui.bootstrap.datepicker.ctrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>

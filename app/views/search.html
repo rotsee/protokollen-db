@@ -3,33 +3,37 @@
         <div class="row">
             <div class="col-xs-3 sidebar">
 
-                <h3>Search</h3>
-                <eui-searchbox field="'municipality'"></eui-searchbox> <!-- ACTION: change to field to search on -->
+                <h3>Sök</h3>
+                <eui-searchbox field="'text'"></eui-searchbox> <!-- ACTION: change to field to search on -->
                 
                  
                  <h4>Filtrera på datum</h4>
-                <eui-daterange field="'meeting-date.date'"></eui-daterange>
+                <!-- <eui-daterange field="'meeting-date.date'" from="'2012-02-06'" to="'2014-04-06'"></eui-daterange>-->
+                <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl"></eui-daterange>
+                
                 
                 <h4>Filtrera på kommun</h4>
-                <eui-checklist field="'meeting-date.date'" size="5"></eui-checklist>
+                <eui-checklist field="'origin'" size="5"></eui-checklist>
 
-                
-
-                <h4>Filtrera på kommun</h4>
-                <eui-checklist field="'county'" size="5"></eui-checklist>
+               
 
             </div>
             <div class="col-xs-9 main">
 
-                <h1>Results</h1>
+                <h1>Visar {{indexVM.results.hits.hits.length}} av {{indexVM.results.hits.total}} träffar</h1>
+                <eui-simple-paging></eui-simple-paging>
                 <ul>
                     <li ng-repeat="doc in indexVM.results.hits.hits">
                         
                         <div>
-                            <div>{{doc._source['meeting-date'].date }}</div>
-                            <div>{{doc._source.text | limitTo:200 }} </div>
+                        	<a href="#document/{{doc._id}}">
+	                            <h4>{{doc._source.origin }}</h4>
+	                        </a>
+                            <div>
+                            	<strong>Datum:</strong> {{doc._source.meeting_date | date : format : 'yyyy-MM-dd' }}
+                            </div>
+                            <pre style="max-height: 70px;overflow-y: scroll;">{{doc._source.header }} </pre>
                         </div>
-                       <!-- <small>{{ doc._source | json }}</small> -->
                     </li>
                 </ul>
                 <eui-simple-paging></eui-simple-paging>

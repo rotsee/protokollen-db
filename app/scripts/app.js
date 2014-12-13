@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('protokollenApp', [
     'ngAnimate',
     'ngCookies',
@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'elasticui',
+    'ui.bootstrap'
   ])
   .constant('euiHost', 'http://localhost:1510') // Url to Elastic search
   .config(function ($routeProvider) {
