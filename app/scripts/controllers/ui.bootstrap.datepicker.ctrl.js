@@ -1,25 +1,38 @@
 angular.module('protokollenApp')
-.controller('DaterangeCtrl', function ($scope, $attrs) {
-  $scope.model = {};
-  $scope.model.from = $scope.$parent.from || '2010-01-01'; 
-  $scope.model.to = $scope.$parent.to || '2014-01-01'; 
+.controller('DaterangeCtrl', function ($scope, currentQuery) {
+
 })
+.controller('SearchUrlCtrl', function ($scope, currentQuery) {
+  $scope.$on('valuesUpdated', function($parent, key) {
+    $scope.from = currentQuery.get('from');
+    $scope.to = currentQuery.get('to');
+  });
+});
 
 angular.module('protokollenApp')
-.controller('DatepickerCtrl', function ($scope, $attrs) {
+.controller('DatepickerCtrl', function ($scope, $attrs, currentQuery) {
   // Define a custom model, eg. "from" or "to"
-  $scope._model = $attrs.model || 'dt';
+  var key = $attrs.key || 'dt';
+  $scope.daterange = {};
+  // The starting date from parent from/to or set current date as default
+  $scope.daterange[key] = currentQuery.get(key) || new Date();
 
-  // The starting date can be set with an attribute "date" 
-  $scope.model[$scope._model] = $scope.$parent.model[$scope._model] || new Date();
+  var keyString = 'daterange.' + key;
+  $scope.$watch(keyString, function() {
+    currentQuery.set(key, $scope.daterange[key]);
+  }, true);
+
+  $scope.$on('valuesUpdated', function($parent, key) {
+    $scope.daterange[key] = currentQuery.get(key);
+  })
 
 
   $scope.today = function() {
-    $scope.model[$scope._model] = new Date();
+    $scope.daterange[key] = new Date();
   };
 
   $scope.clear = function () {
-    $scope.model[$scope._model] = null;
+    $scope.daterange[key] = null;
   };
 
   $scope.open = function($event) {

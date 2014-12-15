@@ -21,6 +21,10 @@
             <div class="col-xs-9 main">
 
                 <h1>Visar {{indexVM.results.hits.hits.length}} av {{indexVM.results.hits.total}} träffar</h1>
+                <div ng-controller="SearchUrlCtrl">
+                  Url till den här sökningen
+                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/</code>
+                </div>
                 <eui-simple-paging></eui-simple-paging>
                 <ul>
                     <li ng-repeat="doc in indexVM.results.hits.hits">

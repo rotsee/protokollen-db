@@ -17,18 +17,18 @@ var elasticui;
                     };
                     
                     directive.template = '\
-                        <ul class="nav nav-list" eui-filter="ejs.RangeFilter(field).field(field).from(model.from).to(model.to)" eui-enabled="true"/>\
+                        <ul class="nav nav-list" eui-filter="ejs.RangeFilter(field).field(field).from(daterange.from).to(daterange.to)" eui-enabled="true"/>\
                             <li>Från: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" model="from">\
+                                <div class="input-group" ng-controller="DatepickerCtrl" key="from">\
                                     <input type="text" class="form-control"\
                                         datepicker-popup="{{format}}"\
-                                        ng-model="model.from"\
+                                        ng-model="daterange.from"\
                                         is-open="opened"\
                                         max-date="maxDate"\
                                         datepicker-options="dateOptions"\
                                         date-disabled="disabled(date, mode)"\
                                         ng-required="true"\
-                                        init-date="{{model.from}}"\
+                                        init-date="daterange.from"\
                                         close-text="Close"\
                                         ng-click="open($event)"\
                                         />\
@@ -40,10 +40,10 @@ var elasticui;
                                 </div>\
                             </li>\
                             <li>Till: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" model="to" date="model.to">\
+                                <div class="input-group" ng-controller="DatepickerCtrl" key="to" date="daterange.to">\
                                     <input type="text" class="form-control"\
                                         datepicker-popup="{{format}}"\
-                                        ng-model="model.to"\
+                                        ng-model="daterange.to"\
                                         is-open="opened"\
                                         max-date="maxDate"\
                                         datepicker-options="dateOptions"\
