@@ -20,12 +20,20 @@
             </div>
             <div class="col-xs-9 main">
 
-                <h1>Visar {{indexVM.results.hits.hits.length}} av {{indexVM.results.hits.total}} träffar</h1>
+                <h1>Visar {{ indexVM.page * indexVM.pageSize - indexVM.pageSize + 1 }}-{{ indexVM.page * indexVM.pageSize }} av {{indexVM.results.hits.total}} träffar</h1>
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
                   <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/</code>
                 </div>
+                <!--
                 <eui-simple-paging></eui-simple-paging>
+                -->
+                <ul class="pager">
+                    <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=1">Första</a></li>
+                    <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=indexVM.page - 1">Föregående</a></li>
+                    <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Nästa</a></li>
+                    <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.pageCount">Sista</a></li>
+                </ul>
                 <ul>
                     <li ng-repeat="doc in indexVM.results.hits.hits">
                         
