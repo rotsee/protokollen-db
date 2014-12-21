@@ -1,4 +1,4 @@
-<div class="container-fluid" eui-sort="ejs.Sort('meeting_date').order('desc')" eui-enabled="true" field="'meeting_date'" order="'desc'">
+<div class="container-fluid" eui-sort="ejs.Sort('meeting_date').order('desc')" eui-enabled="true" field="'meeting_date'" order="'desc'" eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>')">
 
         <div class="row">
             <div class="col-xs-3 sidebar">
@@ -46,7 +46,7 @@
                             <div>
                             	<strong>Datum:</strong> {{doc._source.meeting_date | date : 'yyyy-MM-dd' }}
                             </div>
-                            <pre style="max-height: 70px;overflow-y: scroll;">{{doc._source.header }} </pre>
+                            <div ng-bind-html="doc.highlight.text[0]"></div>
                         </div>
                     </li>
                 </ul>
