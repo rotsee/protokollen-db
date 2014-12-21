@@ -840,6 +840,8 @@ var elasticui;
                 if (typeof updateOnlyIfCountChanged === "undefined") { updateOnlyIfCountChanged = false; }
                 if (!updateOnlyIfCountChanged || this.indexVM.results == null || this.indexVM.results.hits.total != body.hits.total) {
                     this.indexVM.results = body;
+                    this.indexVM.pageFrom = this.indexVM.page * this.indexVM.pageSize - this.indexVM.pageSize + 1;
+                    this.indexVM.pageTo = Math.min(this.indexVM.page * this.indexVM.pageSize, this.indexVM.results.hits.total)
                     this.indexVM.pageCount = Math.ceil(this.indexVM.results.hits.total / this.indexVM.pageSize);
                 }
                 this.indexVM.loading = false;

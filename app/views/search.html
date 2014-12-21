@@ -22,7 +22,7 @@
                 <h1>Hämtar data</h1>
               </div>
               <div class="results" ng-hide="searching">
-                <h1>Visar {{ indexVM.page * indexVM.pageSize - indexVM.pageSize + 1 }}-{{ indexVM.page * indexVM.pageSize }} av {{indexVM.results.hits.total}} träffar</h1>
+                <h1>Visar {{ indexVM.pageFrom }}-{{ indexVM.pageTo }} av {{indexVM.results.hits.total}} träffar</h1>
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
                   <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
