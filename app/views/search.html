@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" eui-sort="ejs.Sort('meeting_date').order('desc')" eui-enabled="true" field="'meeting_date'" order="'desc'">
 
         <div class="row">
             <div class="col-xs-3 sidebar">
@@ -19,7 +19,10 @@
 
             </div>
             <div class="col-xs-9 main">
-
+              <div class="loading" ng-show="searching">
+                <h1>Hämtar data</h1>
+              </div>
+              <div class="results" ng-hide="searching">
                 <h1>Visar {{ indexVM.page * indexVM.pageSize - indexVM.pageSize + 1 }}-{{ indexVM.page * indexVM.pageSize }} av {{indexVM.results.hits.total}} träffar</h1>
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen

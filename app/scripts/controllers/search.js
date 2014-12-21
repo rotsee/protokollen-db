@@ -16,7 +16,6 @@ angular.module('protokollenApp')
 		service.set = function(key, value) {
 			service.values[key] = value;
 			$rootScope.$broadcast("valuesUpdated", key, value);
-			console.log("service update values", key, value);
 		}
 		service.get = function(key) {
 			return service.values[key];
