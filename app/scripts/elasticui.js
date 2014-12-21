@@ -1166,8 +1166,12 @@ var elasticui;
 (function (elasticui) {
     (function (controllers) {
         var QueryController = (function () {
-            function QueryController($scope) {
+            function QueryController($scope, currentQuery) {
                 this.scope = $scope;
+                $scope.querystring = currentQuery.get('keyword');
+                $scope.$on('search', function() {
+                    currentQuery.set('keyword', $scope.querystring);
+                });
             }
             QueryController.prototype.init = function () {
                 var _this = this;
@@ -1191,7 +1195,7 @@ var elasticui;
                     this.scope.indexVM.query = this.scope.query.query;
                 }
             };
-            QueryController.$inject = ['$scope'];
+            QueryController.$inject = ['$scope', 'currentQuery'];
             return QueryController;
         })();
         controllers.QueryController = QueryController;
@@ -1396,7 +1400,11 @@ var elasticui;
                     };
 
                     directive.template = '\
-                    <input type="text" ng-model="querystring" eui-query="ejs.MatchQuery(field, querystring)" eui-enabled="querystring.length"/>\
+                    <input type="text"\
+                        ng-model="querystring"\
+                        eui-query="ejs.MatchQuery(field, querystring)"\
+                        eui-enabled="querystring.length"\
+                    />\
                     <button ng-click="$broadcast(\'search\')">Sök</button>\
                     ';
 

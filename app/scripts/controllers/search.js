@@ -31,9 +31,10 @@ angular.module('protokollenApp')
 // The search controller picks up route parameters and inits the 
 // currentQuery service
 angular.module('protokollenApp').controller('SearchCtrl', ['$scope', '$routeParams', 'currentQuery',
-		function ($scope, $routeParams, currentQuery) {
-			// Get search parameters from route or use default values
-			currentQuery.set('from', $routeParams.from || '2010-01-01');
-			currentQuery.set('to', $routeParams.to || '2015-01-01');
-		}
-	]);
+	function ($scope, $routeParams, currentQuery) {
+		// Get search parameters from route or use default values
+		currentQuery.set('from', $routeParams.from || '2010-01-01');
+		currentQuery.set('to', $routeParams.to || '2015-01-01');
+		currentQuery.set('keyword', $routeParams.keyword || '');
+	}
+]);

@@ -15,6 +15,7 @@ angular.module('protokollenApp')
   $scope.$on('valuesUpdated', function($parent, key) {
     $scope.from = currentQuery.get('from');
     $scope.to = currentQuery.get('to');
+    $scope.keyword = currentQuery.get('keyword');
   });
 });
 

@@ -4,11 +4,10 @@
             <div class="col-xs-3 sidebar">
 
                 <h3>Sök</h3>
-                <eui-searchbox field="'text'"></eui-searchbox> <!-- ACTION: change to field to search on -->
+                <eui-searchbox field="'text'" keyword="keyword"></eui-searchbox> <!-- ACTION: change to field to search on -->
                 
                  
                  <h4>Filtrera på datum</h4>
-                <!-- <eui-daterange field="'meeting-date.date'" from="'2012-02-06'" to="'2014-04-06'"></eui-daterange>-->
                 <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl"></eui-daterange>
                 
                 
@@ -26,7 +25,7 @@
                 <h1>Visar {{ indexVM.page * indexVM.pageSize - indexVM.pageSize + 1 }}-{{ indexVM.page * indexVM.pageSize }} av {{indexVM.results.hits.total}} träffar</h1>
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
-                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/</code>
+                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
                 </div>
                 <!--
                 <eui-simple-paging></eui-simple-paging>
