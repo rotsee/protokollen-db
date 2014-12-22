@@ -13,13 +13,14 @@ angular.module('protokollenApp')
 			$scope.showDocument = false;
 
 			// Get document by id
-			var request = ejs.Request().query(ejs.IdsQuery($routeParams.id));
-			// Make query
+			var reqById = ejs.Request().query(ejs.IdsQuery($routeParams.id));
+
+			// Make document query
 			var res = es.client.search({
 				index: 'documents',
 				size: 1,
 				from: 0,
-				body: request
+				body: reqById
 			}).then(function (response) {
 				// Successful ajax request
 				$scope.showDocument = true;
@@ -29,6 +30,23 @@ angular.module('protokollenApp')
 					// Show document
 					$scope.success = true;
 					$scope.document = response.hits.hits[0];
+
+					// Get other documents from same meeting
+					var originFilter = ejs.TermsFilter('origin', $scope.document._source.origin);
+					var dateFilter = ejs.TermsFilter('meeting_date', $scope.document._source.meeting_date);
+	    		var duplicateFilter = ejs.NotFilter( ejs.IdsFilter( $scope.document._id ) );
+	    		
+	    		var reqOtherMeetingDocuments = 	ejs.Request()
+	    			.filter( ejs.AndFilter([dateFilter, originFilter, duplicateFilter]) );
+	    		var res = es.client.search({
+						index: 'documents',
+						size: 20,
+						from: 0,
+						body: reqOtherMeetingDocuments
+					}).then(function(response) {
+						$scope.otherDocs = response.hits.hits;
+					})
+
 				}
 				else {
 					// Failed to find document with this id

@@ -1,4 +1,10 @@
-<div class="container-fluid" eui-sort="ejs.Sort('meeting_date').order('desc')" eui-enabled="true" field="'meeting_date'" order="'desc'" eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>')">
+<div class="container-fluid" 
+    eui-sort="ejs.Sort('meeting_date').order('desc')"
+    eui-enabled="true"
+    field="'meeting_date'"
+    order="'desc'"
+    eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
+>
 
         <div class="row">
             <div class="col-xs-3 sidebar">
@@ -47,6 +53,7 @@
                             	<strong>Datum:</strong> {{doc._source.meeting_date | date : 'yyyy-MM-dd' }}
                             </div>
                             <div ng-bind-html="doc.highlight.text[0]"></div>
+                            <small><strong>Antal träffar på sökordet:</strong> {{doc.highlight.text.length}}</small>
                         </div>
                     </li>
                 </ul>
