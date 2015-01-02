@@ -18,7 +18,6 @@ describe('Controller: SearchCtrl', function () {
   }));
 
   it('should have a SearchCtrl controller', function() {
-    debugger;
     expect(scope.foo).toBe('bar');
   });
 

@@ -393,10 +393,19 @@ module.exports = function (grunt) {
 
     // Test settings
     karma: {
-      unit: {
+      options: {
         configFile: 'test/karma.conf.js',
-        singleRun: false
-      }
+      },
+      unit: {
+        singleRun: true
+      },
+      // TODO: Enable E2E tests
+      /*e2e: {
+        '/': 'http://localhost:9001/', // The same port as specified in Gruntfile.js for connect:test task
+        urlRoot: '/_karma_/',
+        singleRun: true
+      }*/
+
     }
   });
 
@@ -421,13 +430,21 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.registerTask('test', [
+  grunt.registerTask('test:unit', [
     'clean:server',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma:unit'
   ]);
+
+  /*grunt.registerTask('test:e2e', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma:e2e'
+  ]);*/
 
   grunt.registerTask('build', [
     'clean:dist',
@@ -448,7 +465,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
+    'test:unit',
     'build'
   ]);
 };
