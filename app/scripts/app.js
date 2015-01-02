@@ -42,6 +42,10 @@ var app = angular
         templateUrl: 'views/meetings.html',
         controller: 'MeetingsCtrl'
       })
+      .when('/layout', {
+        templateUrl: 'views/layout.html',
+        controller: 'LayoutCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
