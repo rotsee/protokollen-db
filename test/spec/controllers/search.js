@@ -2,6 +2,7 @@
 
 describe('Controller: SearchCtrl', function () {
 
+
   // load the controller's module
   beforeEach(module('protokollenApp'));
 
@@ -16,7 +17,9 @@ describe('Controller: SearchCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should have a SearchCtrl controller', function() {
+    debugger;
+    expect(scope.foo).toBe('bar');
   });
+
 });
