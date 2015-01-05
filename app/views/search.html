@@ -1,8 +1,8 @@
 <div class="container-fluid" 
     eui-index="'documents'"
     eui-response-fields="meeting_date,origin"
-    eui-sort="ejs.Sort('meeting_date').order('desc')"
     eui-enabled="true"
+    eui-sort="ejs.Sort('meeting_date').order('desc')"
     order="'desc'"
     eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
 >
@@ -13,7 +13,10 @@
                 <h3>Sök</h3>
                 <eui-searchbox field="'text'" keyword="keyword"></eui-searchbox> <!-- ACTION: change to field to search on -->
                 
-                 
+                <h3>Sortera</h3>
+                <button ng-click="sort('desc')" class="btn btn-xs btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'desc'}">Fallande</button>
+                <button ng-click="sort('asc')" class="btn btn-xs btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'asc'}">Stigande</button>
+
                  <h4>Filtrera på datum</h4>
                 <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl"></eui-daterange>
                 
