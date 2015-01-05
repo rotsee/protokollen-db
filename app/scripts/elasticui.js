@@ -214,6 +214,9 @@ var elasticui;
                         indexCtrl.indexVM.index = val;
                     });
                     indexCtrl.indexVM.index = scope.$eval(attrs.euiIndex);
+                    // Select the fields to be returned in the query
+                    // Reduces the size of the queries
+                    indexCtrl.indexVM.responseFields = attrs.euiResponseFields.split(',');
                 };
                 return directive;
             }
@@ -781,7 +784,7 @@ var elasticui;
                     index: this.indexVM.index,
                     size: this.indexVM.pageSize,
                     from: this.indexVM.pageSize * (this.indexVM.page - 1),
-                    fields: ['meeting_date', 'origin'], // TODO: Make dynamic
+                    fields: this.indexVM.responseFields,
                     body: request
                 })
 
