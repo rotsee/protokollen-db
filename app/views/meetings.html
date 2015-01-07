@@ -1,1 +1,19 @@
-<p>This is the meetings view.</p>
+<div class="container-fluid" 
+    eui-index="'documents'"
+    eui-response-fields="meeting_date,origin"
+    eui-enabled="true"
+    eui-sort="ejs.Sort('meeting_date').order('desc')"
+    eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
+>
+Meetings
+<button ng-click="foo()">Hello world</button>
+<eui-checklist field="'origin'" size="5"></eui-checklist>
+
+<ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation('date_agg').field('meeting_date').order('_term','desc').size(0).agg(ejs.TermsAggregation('origin').field('origin'))">
+    <li ng-repeat="bucket in aggResult.buckets" ng-click="clickMeeting(bucket.origin.buckets[0].key, bucket.key)">
+        <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">
+            {{bucket.key_as_string}}, {{bucket.origin.buckets[0].key}} ({{bucket.doc_count}})
+        </label>
+    </li>
+</ul>
+</div>

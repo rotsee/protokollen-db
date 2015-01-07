@@ -14,8 +14,8 @@
                 <eui-searchbox field="'text'" keyword="keyword"></eui-searchbox> <!-- ACTION: change to field to search on -->
                 
                 <h3>Sortera</h3>
-                <button ng-click="sort('desc')" class="btn btn-xs btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'desc'}">Fallande</button>
-                <button ng-click="sort('asc')" class="btn btn-xs btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'asc'}">Stigande</button>
+                <button ng-click="sort('desc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'desc'}">Fallande</button>
+                <button ng-click="sort('asc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'asc'}">Stigande</button>
 
                  <h4>Filtrera på datum</h4>
                 <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl"></eui-daterange>
@@ -56,8 +56,11 @@
                             <div>
                             	<strong>Datum:</strong> {{doc.fields.meeting_date[0] || doc._source.meeting_date | date : 'yyyy-MM-dd' }}
                             </div>
-                            <div ng-bind-html="doc.highlight.text[0]"></div>
-                            <small><strong>Antal träffar på sökordet:</strong> {{doc.highlight.text.length}}</small>
+
+                            <div ng-show="doc.highlight">
+                              <div ng-bind-html="doc.highlight.text[0]"></div>
+                              <small><strong>Antal träffar på sökordet:</strong> {{doc.highlight.text.length}}</small>
+                            </div>
                         </div>
                     </li>
                 </ul>
