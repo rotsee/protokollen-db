@@ -5,15 +5,18 @@
     eui-sort="ejs.Sort('meeting_date').order('desc')"
     eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
 >
-Meetings
-<button ng-click="foo()">Hello world</button>
-<eui-checklist field="'origin'" size="5"></eui-checklist>
+    <h1>Möten</h1>
+    <div class="col-sm-3">
+        <eui-singleselect field="'origin'" size="300"></eui-singleselect>
+    </div>
 
-<ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation('date_agg').field('meeting_date').order('_term','desc').size(0).agg(ejs.TermsAggregation('origin').field('origin'))">
-    <li ng-repeat="bucket in aggResult.buckets" ng-click="clickMeeting(bucket.origin.buckets[0].key, bucket.key)">
-        <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">
-            {{bucket.key_as_string}}, {{bucket.origin.buckets[0].key}} ({{bucket.doc_count}})
-        </label>
-    </li>
-</ul>
+    <div class="col-sm-9">
+        <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation('date_agg').field('meeting_date').order('_term','desc').size(0).agg(ejs.TermsAggregation('origin').field('origin'))">
+            <li ng-repeat="bucket in aggResult.buckets">
+                <a ng-click="clickMeeting(bucket.origin.buckets[0].key, bucket.key)">
+                    {{bucket.key_as_string | date : 'yyyy-MM-dd' }}, {{bucket.origin.buckets[0].key}} ({{bucket.doc_count}})
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
