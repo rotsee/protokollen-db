@@ -995,7 +995,7 @@ var elasticui;
                     };
 
                     directive.template = '\
-            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)">\
+            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
                 <li ng-repeat="bucket in aggResult.buckets">\
                     <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">\
                         <input type="checkbox" ng-model="filter.enabled">\
@@ -1063,7 +1063,7 @@ var elasticui;
                     };
 
                     directive.template = '\
-            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)">\
+            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
                 <li ng-repeat="bucket in aggResult.buckets">\
                     <label eui-filter="ejs.TermsFilter(field, bucket.key)">\
                         <span ng-if="!filter.enabled"><a href="" ng-click="filter.enabled=true">{{bucket.key}} <span class="muted">({{bucket.doc_count}})</span></a></span>\
