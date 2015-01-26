@@ -1,0 +1,33 @@
+// TYPOGRAPHY
+body {
+    font-size: $base-font-size;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    line-height: 1.72222;
+    color: $font-color;
+}
+p, table {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 100;
+}
+h1 { font-size: 3.8em;  }
+h2 { font-size: 2em;    }
+h3 { font-size: 2.2em;  }
+h4 { font-size: 1.7em;  }
+a, a:visited, a:active {
+    color: $theme-color;
+    text-decoration: none;
+}
+a:hover {
+    color: darken($theme-color, 20%);
+}
+
+// TYPOGRAPHY: DESKTOP
+@media only screen and (min-width: 768px) {
+    body {
+        font-size: $base-font-size * 1.15;
+    }
+}

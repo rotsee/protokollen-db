@@ -22,22 +22,40 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a ng-href="#">Start</a></li>
-          <li><a ng-href="#/search">Sök</a></li>
-          <li><a ng-href="#/meetings">Möten</a></li>
-        </ul>
-        <h3 class="text-muted">§ Protokollen</h3>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Title-->
+        <div class="navbar-header">
+          <a class="navbar-brand animated" href="#">
+            <span class="logo">§</span> Protokollen
+          </a>
+        </div>
+        <!-- Twitter, FB, Github -->
+        <div class="pull-right contact">
+          <ul>
+            <li>
+              <a ng-href="#">Start</a>
+            </li>
+            <li>
+              <a ng-href="#/search">Sök</a>
+            </li>
+            <li>
+              <a ng-href="#/meetings">Möten</a>
+            </li>
+          </ul>
+        </div>
+        
       </div>
+    </header>
 
-      <div ng-view=""></div>
+    <div ng-view="" class="container"></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
+    <footer>
+      <div class="container">Footer</div>
+    </footer>
+
+
+    
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
