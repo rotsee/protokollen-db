@@ -21,39 +21,45 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <header class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Title-->
-        <div class="navbar-header">
-          <a class="navbar-brand animated" href="#">
-            <span class="logo">§</span> Protokollen
-          </a>
-        </div>
-        <!-- Twitter, FB, Github -->
-        <div class="pull-right contact">
-          <ul>
-            <li>
-              <a ng-href="#">Start</a>
-            </li>
-            <li>
-              <a ng-href="#/search">Sök</a>
-            </li>
-            <li>
-              <a ng-href="#/meetings">Möten</a>
-            </li>
-          </ul>
-        </div>
+    <!-- Wrapper that pushes the footer down -->
+    <div id="wrap">
+
+        <!-- Header -->
+        <header class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <!-- Title-->
+            <div class="navbar-header">
+              <a class="navbar-brand animated" href="#">
+                <span class="logo">§</span> Protokollen
+              </a>
+            </div>
+            <!-- Twitter, FB, Github -->
+            <div class="pull-right contact">
+              <ul>
+                <li>
+                  <a ng-href="#">Start</a>
+                </li>
+                <li>
+                  <a ng-href="#/search">Sök</a>
+                </li>
+                <li>
+                  <a ng-href="#/meetings">Möten</a>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </header>
+
+        <div ng-view="" class="container"></div>
+
         
-      </div>
-    </header>
-
-    <div ng-view="" class="container"></div>
-
+    </div> <!-- end of wrap -->
     <footer>
-      <div class="container">Footer</div>
+      <div class="container">
+          Ett projekt av Journalism++ Stockholm. Ansvarig utgivare Leo Wallentin.
+      </div>
     </footer>
-
 
     
 

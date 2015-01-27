@@ -53,3 +53,24 @@ input:focus {
 		}
 	}
 }
+// Buttons
+.btn {
+	border-radius: 0;
+}
+.btn:focus {
+	outline: 0;
+}
+.btn-dark {
+	background-color: $color-grey-dark;
+	color: #fff;
+}
+.btn-dark:hover {
+	color: inherit;
+}
+.navbar-toggle {
+	margin: 0;
+	padding: 0;
+	.icon-bar {
+		background-color: #fff;
+	}
+}

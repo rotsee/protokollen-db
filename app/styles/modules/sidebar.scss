@@ -1,0 +1,12 @@
+.sidebar {
+	top: $navbar-height;
+	background-color: #F3F3F3;
+	padding: 8px 14px;
+	min-width: 340px;
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+	.sidebar {
+		background-color: #fff;
+	}	
+}

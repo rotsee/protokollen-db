@@ -2,6 +2,13 @@
 
 // footer
 footer {
-  height: 20px;
-  background-color: $theme-color;
+	background-color: $theme-color;
+	color: #fff;
+	text-align: center;
+	.container {
+		height: $footer-height;
+		line-height: $footer-height;
+	}
+
+
 }

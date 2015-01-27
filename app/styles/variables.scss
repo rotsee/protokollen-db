@@ -7,6 +7,7 @@ $color-green    :   #2ECC71;
 $color-green-dark : #27AE60;
 $color-grey 	: 	#CCC;
 $color-grey-light : #C0C0C0;
+$color-grey-dark:	#565656;
 
 $theme-color    :   $color-blue;
 $secondary-color:   $color-orange;
@@ -16,5 +17,7 @@ $font-color 	: 	#34495e;
 // Typography
 $base-font-size	:   13px;
 
-// Navbar
+// Scaffolding
 $navbar-height  :   45px;
+$footer-height	: 	45px;
+$breakpoint-xs	:	768px;

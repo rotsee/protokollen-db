@@ -1,13 +1,45 @@
+html,
+body {
+  	height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: (-$navbar-height) auto (-$footer-height);
+  /* Pad bottom by footer height */
+  padding: $navbar-height 0 $footer-height;
+}
+
+/* Set the fixed height of the footer here */
+footer {
+  height: $footer-height;
+}
+
+
+
 body {
 	margin-top: $navbar-height;
 }
 
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $breakpoint-xs) {
 	.container {
 		// Set the maximum with in wide mode
 		max-width: 940px;
 	}
+	.sidebar {
+		width: 33.3333333333%;
+		float: left;
+		position: relative;
+		min-height: 1px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 
 }
+
