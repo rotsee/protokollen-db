@@ -1,3 +1,4 @@
+// Checklist (to be used in sidebar)
 eui-checklist {
 	ul {
 		li {
@@ -29,6 +30,21 @@ eui-checklist {
 			input:checked + .label .add {
 				display: none;
 			}
+		}
+	}
+}
+
+// Pagination
+.pager {
+	width: 100%;
+	.back {
+		a {
+			margin-right: 6px;
+		}
+	}
+	.forward {
+		a {
+			margin-left: 6px;
 		}
 	}
 }

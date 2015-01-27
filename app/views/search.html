@@ -43,15 +43,15 @@
                   Url till den här sökningen
                   <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
                 </div>
-                <!--
+                
                 <eui-simple-paging></eui-simple-paging>
-                -->
+                <!--
                 <ul class="pager">
                     <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=1">Första</a></li>
                     <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=indexVM.page - 1">Föregående</a></li>
                     <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Nästa</a></li>
                     <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.pageCount">Sista</a></li>
-                </ul>
+                </ul>-->
                 <div class="search-results">
                     <a href="#document/{{doc._id}}" class="search-item" ng-repeat="doc in indexVM.results.hits.hits">
                         <table>

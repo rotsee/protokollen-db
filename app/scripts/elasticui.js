@@ -1032,10 +1032,16 @@ var elasticui;
                     directive.scope = true;
 
                     directive.template = '\
-            <ul class="pager">\
-                <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=indexVM.page - 1">Previous</a></li>\
-                <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Next</a></li>\
-            </ul>';
+            <div class="pager">\
+                <div class="pull-left back">\
+                    <span ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=1">Första</a></span>\
+                    <span ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=indexVM.page - 1">Föregående</a></span>\
+                </div>\
+                <div class="pull-right forward">\
+                    <span ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Nästa</a></span>\
+                    <span ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.pageCount">Sista</a></span>\
+                </div>\
+            </div>';
 
                     return directive;
                 }
