@@ -28,7 +28,8 @@
                 <eui-searchbox field="'text'" keyword="keyword" class="search large"></eui-searchbox> 
                 <!-- ACTION: change to field to search on -->
 
-                <div class="sort">
+                <div class="sort pull-right">
+                    <label>Sortera</label>
                     <select ng-options="opt.order as opt.label for opt in sortOptions" ng-change="sort()" ng-model="order">
                     </select>
                 </div>
@@ -51,24 +52,29 @@
                     <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Nästa</a></li>
                     <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.pageCount">Sista</a></li>
                 </ul>
-                <ul>
-                    <li ng-repeat="doc in indexVM.results.hits.hits">
-                        
-                        <div>
-                        	<a href="#document/{{doc._id}}">
-	                            <h4>{{doc.fields.origin[0] || doc_source.origin }}</h4>
-	                        </a>
-                            <div>
-                            	<strong>Datum:</strong> {{doc.fields.meeting_date[0] || doc._source.meeting_date | date : 'yyyy-MM-dd' }}
-                            </div>
+                <div class="search-results">
+                    <a href="#document/{{doc._id}}" class="search-item" ng-repeat="doc in indexVM.results.hits.hits">
+                        <table>
+                            <tr>
+                                <td class="column-icon">
+                                    <img src="images/document.png" class="icon">
+                                </td>
+                                <td class="column-content">
+                                    <div class="origin">{{doc.fields.origin[0] || doc_source.origin }}</div>
+                                    <date class="date">{{doc.fields.meeting_date[0] || doc._source.meeting_date | date : 'yyyy-MM-dd' }}</date>
 
-                            <div ng-show="doc.highlight">
-                              <div ng-bind-html="doc.highlight.text[0]"></div>
-                              <small><strong>Antal träffar på sökordet:</strong> {{doc.highlight.text.length}}</small>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                                    <div class="excerpt-wrapper" ng-show="doc.highlight">
+                                        <div ng-bind-html="doc.highlight.text[0]" class="excerpt"></div>
+                                        <small class="number-of-hits">
+                                            <strong>Antal träffar på sökordet:</strong> {{doc.highlight.text.length}}
+                                        </small>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </div>
                 <eui-simple-paging></eui-simple-paging>
             </div>
         </div>

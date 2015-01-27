@@ -1,0 +1,54 @@
+.search-results {
+	.search-item {
+		border-bottom: 1px solid $color-grey-light;
+		padding: 8px 0;
+		width: 100%;
+		display: block;
+
+		// document icon
+		$icon-size: 33px;
+		.column-icon {
+			width: $icon-size;
+			vertical-align: top;
+			.icon {
+				width: $icon-size;
+				height: $icon-size;
+			}
+		}
+
+		// document summary
+		.column-content {
+			vertical-align: top;
+			padding-left: 10px;
+
+			// municipality name
+			.origin {
+				color: $font-color;
+				font-weight: bold;
+			}
+			// date of meeting
+			.date {
+				color: $font-color;
+			}
+
+			// show excerpt if search keyword
+			.excerpt {
+				font-family: Menlo, Courier, Arial;
+				font-size: 11px;
+				line-height: 1.3em;
+				color: $font-color;
+				margin-top: 8px;
+				margin-bottom: 3px;
+			}
+			.number-of-hits {
+				color: $font-color;
+				font-size: 12px;
+				font-weight: 400;
+			}
+
+		}
+
+		
+
+	}
+}
