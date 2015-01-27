@@ -8,9 +8,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import 'variables';
 
 @import 'modules/typography';
+@import 'modules/scaffolding';
+
+@import 'modules/forms';
+@import 'modules/elasticui';
+
+
 @import 'modules/navbar';
 @import 'modules/footer';
-@import 'modules/scaffolding';
+
 
 
 

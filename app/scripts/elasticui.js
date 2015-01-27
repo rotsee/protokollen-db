@@ -999,11 +999,14 @@ var elasticui;
                 <li ng-repeat="bucket in aggResult.buckets">\
                     <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">\
                         <input type="checkbox" ng-model="filter.enabled">\
-                        {{bucket.key}} ({{bucket.doc_count}})\
+                        <span class="label">{{bucket.key}} ({{bucket.doc_count}})\
+                            <span class="pull-right add">+</span>\
+                            <span class="pull-right remove">-</span>\
+                        </span>\
                     </label>\
                 </li>\
-                <button class="btn" ng-click="size=100" ng-show="(size <= aggResult.buckets.length) && size!==0">Visa alla</button>\
-                <button class="btn" ng-click="size=5" ng-show="size!==5">Visa färre</button>\
+                <a ng-click="size=999" ng-show="(size <= aggResult.buckets.length) && size!==0">Visa alla</a>\
+                <a ng-click="size=5" ng-show="size!==5">Visa färre</a>\
             </ul>';
 
                     return directive;
@@ -1410,6 +1413,7 @@ var elasticui;
                         ng-model="querystring"\
                         eui-query="ejs.MatchQuery(field, querystring)"\
                         eui-enabled="querystring.length"\
+                        placeholder="Sök på nyckelord"\
                     />\
                     <button ng-click="$broadcast(\'search\')">Sök</button>\
                     ';
@@ -1446,48 +1450,37 @@ var elasticui;
                     };
                     
                     directive.template = '\
-                        <ul class="nav nav-list" eui-filter="ejs.RangeFilter(field).field(field).from(daterange.from).to(daterange.to)" eui-enabled="true"/>\
-                            <li>Från: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" key="from">\
-                                    <input type="text" class="form-control"\
-                                        datepicker-popup="{{format}}"\
-                                        ng-model="daterange.from"\
-                                        is-open="opened"\
-                                        max-date="maxDate"\
-                                        datepicker-options="dateOptions"\
-                                        date-disabled="disabled(date, mode)"\
-                                        ng-required="true"\
-                                        init-date="daterange.from"\
-                                        close-text="Close"\
-                                        ng-click="open($event)"\
-                                        />\
-                                    <span class="input-group-btn">\
-                                        <button type="button" class="btn btn-default" ng-click="open($event)">\
-                                            <i class="glyphicon glyphicon-calendar"></i>\
-                                        </button>\
-                                    </span>\
-                                </div>\
-                            </li>\
-                            <li>Till: \
-                                <div class="input-group" ng-controller="DatepickerCtrl" key="to" date="daterange.to">\
-                                    <input type="text" class="form-control"\
-                                        datepicker-popup="{{format}}"\
-                                        ng-model="daterange.to"\
-                                        is-open="opened"\
-                                        max-date="maxDate"\
-                                        datepicker-options="dateOptions"\
-                                        date-disabled="disabled(date, mode)"\
-                                        ng-required="true"\
-                                        close-text="Close"\
-                                        ng-click="open($event)"\
-                                        />\
-                                    <span class="input-group-btn">\
-                                        <button type="button" class="btn btn-default" ng-click="open($event)">\
-                                            <i class="glyphicon glyphicon-calendar"></i>\
-                                        </button>\
-                                    </span>\
-                                </div></li>\
-                        </ul>';
+                        <div eui-filter="ejs.RangeFilter(field).field(field).from(daterange.from).to(daterange.to)" eui-enabled="true"/>\
+                            <div class="sidebar-title">Från</div> \
+                            <div class="date" ng-controller="DatepickerCtrl" key="from">\
+                                <input type="text" class=""\
+                                    datepicker-popup="{{format}}"\
+                                    ng-model="daterange.from"\
+                                    is-open="opened"\
+                                    max-date="maxDate"\
+                                    datepicker-options="dateOptions"\
+                                    date-disabled="disabled(date, mode)"\
+                                    ng-required="true"\
+                                    init-date="daterange.from"\
+                                    close-text="Close"\
+                                    ng-click="open($event)"\
+                                    />\
+                            </div>\
+                            <div class="sidebar-title">Till</div> \
+                            <div class="date" ng-controller="DatepickerCtrl" key="to" date="daterange.to">\
+                                <input type="text" class=""\
+                                    datepicker-popup="{{format}}"\
+                                    ng-model="daterange.to"\
+                                    is-open="opened"\
+                                    max-date="maxDate"\
+                                    datepicker-options="dateOptions"\
+                                    date-disabled="disabled(date, mode)"\
+                                    ng-required="true"\
+                                    close-text="Close"\
+                                    ng-click="open($event)"\
+                                    />\
+                            </div>\
+                        </div>';
 
                     return directive;
                 }

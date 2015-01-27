@@ -1,0 +1,55 @@
+
+input {
+	border: 0;
+	border-bottom: 1px solid $color-grey-light;
+	font-weight: 300;
+	width: 100%;
+}
+input:focus {
+  outline: none;
+
+}
+
+.search {
+
+}
+.search.large {
+	$input-padding: 10px;
+	$icon-size: 33px;
+
+	input {
+		padding: $input-padding;
+		font-size: 24px;
+		margin-bottom: 15px;
+
+		background: url("../images/search.png") no-repeat scroll;
+		background-position: $input-padding 50%;
+		background-size: $icon-size;
+		
+		padding-left: $icon-size + $input-padding * 2;
+	}
+
+}
+.search.small {
+
+}
+
+
+.daterange {
+	$input-padding: 7px;
+	$icon-size: 16px;
+
+	.date {
+		input {
+			padding: $input-padding;
+			margin-bottom: 15px;
+
+			background: url("../images/calendar.png") no-repeat scroll;
+			background-position: right $input-padding center;
+			background-size: $icon-size;
+			padding-right: $icon-size + $input-padding * 2;
+
+			cursor: pointer;
+		}
+	}
+}

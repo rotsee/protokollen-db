@@ -8,33 +8,36 @@
 >
 
         <div class="row">
-            <div class="col-xs-3 sidebar">
-
-                <h3>Sök</h3>
-                <eui-searchbox field="'text'" keyword="keyword"></eui-searchbox> <!-- ACTION: change to field to search on -->
-                
-                <h3>Sortera</h3>
-                <button ng-click="sort('desc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'desc'}">Fallande</button>
-                <button ng-click="sort('asc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'asc'}">Stigande</button>
-
-                 <h4>Filtrera på datum</h4>
-                <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl"></eui-daterange>
+            <div class="col-xs-4 sidebar">
+                <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl" class="daterange"></eui-daterange>
                 
                 
-                <h4>Filtrera på kommun</h4>
-                <eui-checklist field="'origin'" size="5"></eui-checklist>
+                <div class="sidebar-title">Filtrera på kommun</div>
+                <eui-checklist field="'origin'" size="5" eui-or-filter></eui-checklist>
 
-                <h4>Dokumenttyp</h4>
-                <eui-checklist field="'document_type'" size="5"></eui-checklist>
+                <div class="sidebar-title">Dokumenttyp</div>
+                <eui-checklist field="'document_type'" size="5" eui-or-filter></eui-checklist>
                
 
             </div>
-            <div class="col-xs-9 main">
+            <div class="col-xs-8 main">
               <div class="loading" ng-show="searching">
                 <h1>Hämtar data</h1>
               </div>
               <div class="results" ng-hide="searching">
-                <h1>Visar {{ indexVM.pageFrom }}-{{ indexVM.pageTo }} av {{indexVM.results.hits.total}} träffar</h1>
+                <eui-searchbox field="'text'" keyword="keyword" class="search large"></eui-searchbox> 
+                <!-- ACTION: change to field to search on -->
+
+                <div class="sort">
+                    <select ng-options="opt.order as opt.label for opt in sortOptions" ng-change="sort()" ng-model="order">
+                    </select>
+                </div>
+                <!--
+                <button ng-click="sort('desc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'desc'}">Fallande</button>
+                <button ng-click="sort('asc')" class="btn btn-sm btn-default" ng-class="{active : sorting.sort.toJSON().meeting_date.order == 'asc'}">Stigande</button>-->
+
+                <div>Visar {{ indexVM.pageFrom }}-{{ indexVM.pageTo }} av {{indexVM.results.hits.total}} träffar</div>
+
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
                   <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
