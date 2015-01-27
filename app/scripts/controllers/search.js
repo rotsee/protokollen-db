@@ -36,8 +36,18 @@ angular.module('protokollenApp').controller('SearchCtrl', ['$scope', '$routePara
 		currentQuery.set('from', $routeParams.from || '2010-01-01');
 		currentQuery.set('to', $routeParams.to || '2015-01-01');
 		currentQuery.set('keyword', $routeParams.keyword || '');
-		$scope.sort = function(order) {
-			this.sorting.sort = ejs.Sort('meeting_date').order(order);
+
+		// Set defult sorting
+		$scope.order = 'desc';
+		// Sorting options
+		$scope.sortOptions = [
+			{ order: 'asc', label: 'Stigande' },
+			{ order: 'desc', label: 'Fallande' },
+		]
+
+		// Update sort
+		$scope.sort = function() {
+			this.sorting.sort = ejs.Sort('meeting_date').order(this.order);
 		};
 	}
 ]);
