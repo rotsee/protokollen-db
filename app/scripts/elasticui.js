@@ -691,6 +691,7 @@ var elasticui;
                     filters: this.filters,
                     highlight: null,
                     loaded: false,
+                    firstPageLoad: true,
                     page: 1,
                     index: null,
                     loading: false,
@@ -849,6 +850,7 @@ var elasticui;
                     this.indexVM.pageCount = Math.ceil(this.indexVM.results.hits.total / this.indexVM.pageSize);
                 }
                 this.indexVM.loading = false;
+                this.indexVM.firstPageLoad = false;
             };
             IndexController.$inject = ['$scope', '$timeout', '$window', 'es', '$rootScope'];
             return IndexController;
@@ -1000,8 +1002,8 @@ var elasticui;
                     <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">\
                         <input type="checkbox" ng-model="filter.enabled">\
                         <span class="label">{{bucket.key}} ({{bucket.doc_count}})\
-                            <span class="pull-right add">+</span>\
-                            <span class="pull-right remove">-</span>\
+                            <span class="pull-right glyphicon glyphicon-plus add" aria-hidden="true"></span>\
+                            <span class="pull-right glyphicon glyphicon-minus remove" aria-hidden="true"></span>\
                         </span>\
                     </label>\
                 </li>\

@@ -6,42 +6,56 @@
     order="'desc'"
     eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
 >
-        <div class="row">
-            <div id="sidebar" class="sidebar navmenu-fixed-left offcanvas-xs">
-                <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl" class="daterange"></eui-daterange>
-                
-                
-                <div class="sidebar-title">Filtrera på kommun</div>
-                <eui-checklist field="'origin'" size="5" eui-or-filter></eui-checklist>
+    <!-- show this on first page load -->
+    <div class="loading" ng-show="indexVM.firstPageLoad">
+      <h1>Hämtar data</h1>
+    </div>
 
-                <div class="sidebar-title">Dokumenttyp</div>
-                <eui-checklist field="'document_type'" size="5" eui-or-filter></eui-checklist>
-               
+    <!-- loading done -->
+    <div class="row" ng-hide="indexVM.firstPageLoad">
+        <div id="sidebar" class="sidebar navmenu-fixed-left offcanvas-xs">
+            <span class="glyphicon glyphicon-remove pull-right visible-xs" aria-hidden="true" data-toggle="offcanvas" data-target="#sidebar"></span>
 
+            <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl" class="daterange"></eui-daterange>
+            
+            
+            <div class="sidebar-title">Filtrera på kommun</div>
+            <eui-checklist field="'origin'" size="5" eui-or-filter></eui-checklist>
+
+            <div class="sidebar-title">Dokumenttyp</div>
+            <eui-checklist field="'document_type'" size="5" eui-or-filter></eui-checklist>
+           
+
+        </div>
+
+        <!-- main view -->
+        <div class="col-sm-8 col-xs-12 main">
+          
+
+          <!-- show result list after load -->
+          <div class="results">
+            <!-- search box -->
+            <eui-searchbox field="'text'" keyword="keyword" class="search large"></eui-searchbox> 
+
+            <!-- sorting -->
+            <div class="sort pull-right">
+                <label>Sortera</label>
+                <select ng-options="opt.order as opt.label for opt in sortOptions" ng-change="sort()" ng-model="order">
+                </select>
             </div>
 
-            <!-- main view -->
-            <div class="col-sm-8 col-xs-12 main">
-              <!-- loading -->
-              <div class="loading" ng-show="searching">
-                <h1>Hämtar data</h1>
-              </div>
+            <!-- show this at refresh -->
+            <div class="loading" ng-show="indexVM.loading">
+              <h1>Hämtar data</h1>
+            </div>
 
-              <!-- show result list after load -->
-              <div class="results" ng-hide="searching">
-                <!-- search box -->
-                <eui-searchbox field="'text'" keyword="keyword" class="search large"></eui-searchbox> 
-
-                <!-- sorting -->
-                <div class="sort pull-right">
-                    <label>Sortera</label>
-                    <select ng-options="opt.order as opt.label for opt in sortOptions" ng-change="sort()" ng-model="order">
-                    </select>
-                </div>
+            <!-- show only after results are loaded -->
+            <div ng-hide="indexVM.loading">
 
                 <!-- search meta info --> 
                 <div>Visar {{ indexVM.pageFrom }}-{{ indexVM.pageTo }} av {{indexVM.results.hits.total}} träffar</div>
 
+                <!-- the url of the current search -->
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
                   <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
@@ -84,8 +98,11 @@
                             </tr>
                         </table>
                     </a>
-                </div>
+                </div> <!-- end of search result list -->
+
+                <!-- pagination -->
                 <eui-simple-paging></eui-simple-paging>
             </div>
         </div>
     </div>
+</div>
