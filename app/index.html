@@ -29,13 +29,22 @@
           <div class="container">
             <!-- Title-->
             <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                <span class="sr-only">Visa meny</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
               <a class="navbar-brand animated" href="#">
                 <span class="logo">§</span> Protokollen
               </a>
             </div>
-            <!-- Twitter, FB, Github -->
-            <div class="pull-right contact">
-              <ul>
+            <!-- Menu -->
+            
+
+            <div class="menu collapse navbar-collapse" id="menu">
+              <ul class="nav navbar-nav navbar-right">
                 <li>
                   <a ng-href="#">Start</a>
                 </li>
@@ -51,7 +60,7 @@
           </div>
         </header>
 
-        <div ng-view="" class="container"></div>
+        <div ng-view="" class="container view"></div>
 
         
     </div> <!-- end of wrap -->
@@ -121,6 +130,7 @@
         <script src="scripts/app.js"></script>
 
         <script src="scripts/directives/sidebar.directive.js"></script>
+        <script src="scripts/directives/protokollen.directives.js"></script>
 
         <script src="scripts/services/meetingDocumentsService.js"></script>
 

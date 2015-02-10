@@ -6,50 +6,89 @@
   min-height: $navbar-height;
 
   .navbar-header {
-    display: inline-block;
-    float: left;
 
+    // Logo
     .navbar-brand {
+      height: 100%;
       font-weight: 100;
       font-size: 1.2em;
       padding: 0;
       padding-left: 15px;
-      line-height: 50px;
+      line-height: $navbar-height;
       color: #fff;  
     }
+
+    // Menu hamburger
+    .navbar-toggle {
+      border: 0;
+      border-radius: 0;
+      margin-top: 14px;
+      margin-right: 12px;
+
+      .icon-bar {
+        background-color: #fff;
+        width: 28px;
+        border-radius: 0;
+      }
+    }
+    .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: transparent;
+    }
   }
 
-  .contact {
-    height: $navbar-height;
-    line-height: $navbar-height;
-    margin-right: -15px;
-
-    label {
-      margin-bottom: 0;
-    }
-
-    ul {
-      margin: 0;
-      display: inline-block;
-      padding-left: 6px;
-
+  // Menu
+  .menu {
+    border:0;
+    background-color: $theme-color;
+    .nav {
       li {
-        display: inline-block;
         a {
           color: #fff;
-          font-size: 16px;
-          width: $navbar-height;
-          height: $navbar-height;
-          display: inline-block;
-          text-align: center;
         }
       }
-      li:hover {
-        background-color: #fff;
-        a {
-          color: $theme-color;
-        }
-      }
-    } 
+    }
   }
 }
+
+@media screen and (min-width: $breakpoint-xs) {
+  .navbar {
+    .menu {
+      background-color: transparent;
+      height: $navbar-height;
+      line-height: $navbar-height;
+      margin-right: -15px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      ul {
+        margin: 0;
+        display: inline-block;
+        padding-left: 6px;
+
+        li {
+          display: inline-block;
+          a {
+            color: #fff;
+            font-size: 16px;
+            height: $navbar-height;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0 10px;
+          }
+        }
+        li:hover {
+          background-color: #fff;
+          a {
+            color: $theme-color;
+            text-decoration: none;
+          }
+        }
+      } 
+    }
+  }
+
+}
+
