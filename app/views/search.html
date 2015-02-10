@@ -7,9 +7,7 @@
     eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
 >
     <!-- show this on first page load -->
-    <div class="loading" ng-show="indexVM.firstPageLoad">
-      <h1>Hämtar data</h1>
-    </div>
+    <loading ng-show="indexVM.firstPageLoad"></loading>
 
     <!-- loading done -->
     <div class="row" ng-hide="indexVM.firstPageLoad">
@@ -45,9 +43,7 @@
             </div>
 
             <!-- show this at refresh -->
-            <div class="loading" ng-show="indexVM.loading">
-              <h1>Hämtar data</h1>
-            </div>
+            <loading ng-show="indexVM.loading"></loading>
 
             <!-- show only after results are loaded -->
             <div ng-hide="indexVM.loading">
