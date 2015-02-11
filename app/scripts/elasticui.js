@@ -174,6 +174,7 @@ var elasticui;
 
                     var enabled = false;
                     var enabledAttr = element.attr('eui-enabled');
+
                     if (enabledAttr) {
                         scope.$watch(enabledAttr, function (val) {
                             return scope.filter.enabled = val;
@@ -181,9 +182,22 @@ var elasticui;
                         enabled = scope.$eval(enabledAttr);
                     }
 
+                    // This single filter feature added manually
+                    // When set to true only one filter can be used at a time
+                    // Useful in a single select list that does not filter itself
+                    var singleFilter = false;
+                    var singleFilterAttr = element.attr('eui-single-filter');
+                    if (singleFilterAttr) {
+                        scope.$watch(singleFilterAttr, function (val) {
+                            return scope.filter.singleFilter = val;
+                        });
+                        singleFilter = scope.$eval(singleFilterAttr);
+                    }
+
                     scope.filter = {
                         filter: scope.$eval(element.attr('eui-filter') + " | euiCached"),
-                        enabled: enabled
+                        enabled: enabled,
+                        singleFilter: singleFilter
                     };
 
                     filterCtrl.init();
@@ -663,6 +677,13 @@ var elasticui;
                     return;
                 }
 
+                if (this.scope.filter.singleFilter) {
+                    for (var i=0; i < this.scope.filters.ejsObjects.length; i++) {
+                        var ejsObject = this.scope.filters.ejsObjects[i];
+                        this.scope.filters.remove(ejsObject);
+                    }
+                }
+
                 if (this.scope.filter.enabled) {
                     this.scope.filters.add(this.scope.filter.filter);
                 } else {
@@ -1074,10 +1095,10 @@ var elasticui;
                     };
 
                     directive.template = '\
-            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
+            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)" eui-filter-self="false">\
                 <li ng-repeat="bucket in aggResult.buckets">\
-                    <label eui-filter="ejs.TermsFilter(field, bucket.key)">\
-                        <span ng-if="!filter.enabled"><a href="" ng-click="filter.enabled=true">{{bucket.key}} <span class="muted">({{bucket.doc_count}})</span></a></span>\
+                    <label eui-filter="ejs.TermsFilter(field, bucket.key)" eui-single-filter="true">\
+                        <span ng-if="!filter.enabled"><a href="" ng-click="filter.enabled=true">{{bucket.key}} <span class="muted doc-count">({{bucket.doc_count}})</span></a></span>\
                         <span ng-if="filter.enabled">{{bucket.key}} <a href="" ng-click="filter.enabled=false" class="facet-remove">x</a></span>\
                     </label>\
                 </li>\
