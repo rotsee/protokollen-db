@@ -1458,6 +1458,8 @@ var elasticui;
                         eui-query="ejs.MatchQuery(field, querystring)"\
                         eui-enabled="querystring.length"\
                         placeholder="Sök på nyckelord"\
+                        ng-enter="$broadcast(\'search\')"\
+                        ng-blur="$broadcast(\'search\')"\
                     />\
                     <button ng-click="$broadcast(\'search\')">Sök</button>\
                     ';

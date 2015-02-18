@@ -1,4 +1,5 @@
 <div class="container-fluid" 
+    id="search-view"
     eui-index="'documents'"
     eui-response-fields="meeting_date,origin"
     eui-enabled="true"
@@ -33,7 +34,7 @@
             </div>
            
 
-        </div>
+        </div> <!-- end of sidebar -->
 
         <!-- main view -->
         <div class="col-sm-8 col-xs-12 main">
@@ -59,12 +60,6 @@
 
                 <!-- search meta info --> 
                 <div>Visar {{ indexVM.pageFrom }}-{{ indexVM.pageTo }} av {{indexVM.results.hits.total}} träffar</div>
-
-                <!-- the url of the current search -->
-                <div ng-controller="SearchUrlCtrl">
-                  Url till den här sökningen
-                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
-                </div>
                 
                 <!-- pagination --> 
                 <eui-simple-paging></eui-simple-paging>
@@ -107,6 +102,12 @@
 
                 <!-- pagination -->
                 <eui-simple-paging></eui-simple-paging>
+
+                <!-- the url of the current search -->
+                <div ng-controller="SearchUrlCtrl">
+                  Url till den här sökningen
+                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
+                </div>
             </div>
         </div>
     </div>

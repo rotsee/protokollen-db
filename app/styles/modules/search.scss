@@ -2,6 +2,15 @@
 	width: 100%;
 }
 
+// Hide search button 
+#search-view {
+	eui-searchbox {
+		button {
+			display: none;
+		}
+	}	
+}
+
 .search-results {
 	.search-item {
 		border-bottom: 1px solid $color-grey-light;
