@@ -6,17 +6,38 @@
     eui-highlight="ejs.Highlight('text').preTags('<mark>').postTags('</mark>').fragmentSize(200)"
 >
     <h1>Möten</h1>
-    <div class="col-sm-3">
+    <!-- toggle mobile sidebar -->
+    <button type="button" id="toggle-sidebar" class="visible-xs btn btn-dark btn-lg" data-toggle="offcanvas" data-target="#sidebar">
+      Välj kommun
+
+      <div class="pull-right navbar-toggle">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </div>
+    </button>
+
+    <!-- sidebar -->
+    <div id="sidebar" class="sidebar navmenu-fixed-left offcanvas-xs">
         <eui-singleselect field="'origin'" size="300"></eui-singleselect>
     </div>
 
-    <div class="col-sm-9">
-        <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation('date_agg').field('meeting_date').order('_term','desc').size(0).agg(ejs.TermsAggregation('origin').field('origin'))">
-            <li ng-repeat="bucket in aggResult.buckets">
-                <a ng-click="clickMeeting(bucket.origin.buckets[0].key, bucket.key)">
-                    {{bucket.key_as_string | date : 'yyyy-MM-dd' }}, {{bucket.origin.buckets[0].key}} ({{bucket.doc_count}})
-                </a>
-            </li>
-        </ul>
+    <!-- main view -->
+    <div class="col-sm-8 col-xs-12 main">
+        <div class="search-results" eui-aggregation="ejs.TermsAggregation('date_agg').field('meeting_date').order('_term','desc').size(0).agg(ejs.TermsAggregation('origin').field('origin'))">
+            <a class="search-item" ng-repeat="bucket in aggResult.buckets" ng-click="clickMeeting(bucket.origin.buckets[0].key, bucket.key)">
+                <table>
+                    <tr>
+                        <td class="column-icon">
+                            <img src="images/document.png" class="icon">
+                        </td>
+                        <td class="column-content">
+                            <div class="origin">{{bucket.origin.buckets[0].key }}</div>
+                            <date class="date">{{bucket.key_as_string | date : 'yyyy-MM-dd' }}</date>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
     </div>
 </div>

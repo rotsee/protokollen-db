@@ -1,3 +1,6 @@
+$list-item-padding-xs	: 10px 10px;
+$list-item-padding		: 10px 7px;
+
 .sidebar {
 	top: $navbar-height;
 	background-color: #F3F3F3;
@@ -7,6 +10,49 @@
 	.glyphicon-remove {
 		font-size: 24px;
 		color: $color-grey;
+	}
+
+	.section {
+		margin-top: 20px 0;
+	}
+}
+
+.sidebar-list {
+	.list-item {
+		cursor: pointer;
+		width: 100%;
+		border-bottom:1px solid $color-grey-light;
+		padding: $list-item-padding-xs;
+		margin: 0;
+		font-size: 16px;
+		font-weight: 400;
+
+		.add {
+			display: inline-block;
+		}
+		.remove {
+			display: none;
+		}
+	}
+	.list-item:hover {
+		background-color: $color-grey-light;
+	}
+	.list-item.active {
+		background-color: #333;
+		color: #fff;
+
+		.add {
+			display: none;
+		}
+		.remove {
+			display: inline-block
+		}
+	}
+
+	.show-more {
+		cursor: pointer;
+		padding:$list-item-padding-xs;
+		display: block;
 	}
 }
 
@@ -18,5 +64,17 @@
 		top: auto;
 		z-index: 1029;
 		padding-right: 30px;
-	}	
+	}
+
+	.sidebar-list {
+		.list-item {
+			padding: $list-item-padding;
+			font-size: inherit;
+		}
+
+		.show-more {
+			cursor: pointer;
+			padding:$list-item-padding;
+		}
+	}
 }

@@ -9,19 +9,28 @@
     <!-- show this on first page load -->
     <loading ng-show="indexVM.firstPageLoad"></loading>
 
-    <!-- loading done -->
+    <!-- show below when loading is done -->
     <div class="row" ng-hide="indexVM.firstPageLoad">
+        
+        <!-- sidebar -->
         <div id="sidebar" class="sidebar navmenu-fixed-left offcanvas-xs">
+            <!-- close icon (mobile) -->
             <span class="glyphicon glyphicon-remove pull-right visible-xs" aria-hidden="true" data-toggle="offcanvas" data-target="#sidebar"></span>
 
-            <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl" class="daterange"></eui-daterange>
+            <!-- date range -->
+            <eui-daterange field="'meeting_date'" ng-controller="DaterangeCtrl" class="daterange section"></eui-daterange>
             
-            
-            <div class="sidebar-title">Filtrera på kommun</div>
-            <eui-checklist field="'origin'" size="5" eui-or-filter></eui-checklist>
+            <!-- filter: municipality -->
+            <div class="section">
+                <div class="sidebar-title">Filtrera på kommun</div>
+                <eui-checklist field="'origin'" size="5" eui-or-filter></eui-checklist>
+            </div>
 
-            <div class="sidebar-title">Dokumenttyp</div>
-            <eui-checklist field="'document_type'" size="5" eui-or-filter></eui-checklist>
+            <!-- filter: document type -->
+            <div class="section">
+                <div class="sidebar-title">Dokumenttyp</div>
+                <eui-checklist field="'document_type'" size="5" eui-or-filter></eui-checklist>
+            </div>
            
 
         </div>

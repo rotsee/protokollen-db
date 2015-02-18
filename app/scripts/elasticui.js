@@ -1020,14 +1020,22 @@ var elasticui;
                     directive.template = '\
             <ul class="nav nav-list sidebar-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
                 <li ng-repeat="bucket in aggResult.buckets">\
-                    <label class="list-item" ng-class="{active:filter.enabled}" eui-filter="ejs.TermsFilter(field, bucket.key)" ng-click="filter.enabled=!filter.enabled">\
+                    <label class="list-item"\
+                        ng-class="{active:filter.enabled}"\
+                        eui-filter="ejs.TermsFilter(field, bucket.key)"\
+                        ng-click="filter.enabled=!filter.enabled"\
+                        >\
                         {{bucket.key}} ({{bucket.doc_count}})\
-                            <span class="pull-right glyphicon glyphicon-plus add" aria-hidden="true"></span>\
-                            <span class="pull-right glyphicon glyphicon-minus remove" aria-hidden="true"></span>\
+                            <span class="pull-right add">+</span>\
+                            <span class="pull-right remove" aria-hidden="true">-</span>\
                     </label>\
                 </li>\
-                <a ng-click="size=999" ng-show="(size <= aggResult.buckets.length) && size!==0">Visa alla</a>\
-                <a ng-click="size=5" ng-show="size!==5">Visa färre</a>\
+                <a class="show-more" ng-click="size=999" ng-show="(size <= aggResult.buckets.length) && size!==0">\
+                    Visa alla\
+                </a>\
+                <a class="show-more" ng-click="size=5" ng-show="size!==5">\
+                    Visa färre\
+                </a>\
             </ul>';
 
                     return directive;
@@ -1095,7 +1103,13 @@ var elasticui;
                     directive.template = '\
             <ul class="nav nav-list sidebar-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)" eui-filter-self="false">\
                 <li ng-repeat="bucket in aggResult.buckets">\
-                    <label class="list-item" ng-class="{active:filter.enabled}" eui-filter="ejs.TermsFilter(field, bucket.key)" eui-single-filter="true" ng-click="filter.enabled=!filter.enabled">\
+                    <label class="list-item"\
+                        ng-class="{active:filter.enabled}"\
+                        eui-filter="ejs.TermsFilter(field, bucket.key)"\
+                        eui-single-filter="true"\
+                        ng-click="filter.enabled=!filter.enabled"\
+                        data-toggle="offcanvas" data-target=".sidebar.in.canvas-slid"\
+                        >\
                         {{bucket.key}} <span class="muted doc-count">({{bucket.doc_count}})</span>\
                     </label>\
                 </li>\
