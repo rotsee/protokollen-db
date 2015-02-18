@@ -30,7 +30,7 @@ var app = angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/search/:from?/:to?/:keyword?', {
+      .when('/search', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })

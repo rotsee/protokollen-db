@@ -106,7 +106,7 @@
                 <!-- the url of the current search -->
                 <div ng-controller="SearchUrlCtrl">
                   Url till den här sökningen
-                  <code>/#/search/{{from | date : 'yyyy-MM-dd' }}/{{to | date : 'yyyy-MM-dd'}}/{{keyword}}</code>
+                  <code>/#/search/from={{from | date : 'yyyy-MM-dd' }}&to={{to | date : 'yyyy-MM-dd'}}&keyword={{keyword}}</code>
                 </div>
             </div>
         </div>
