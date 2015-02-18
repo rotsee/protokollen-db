@@ -1,34 +1,39 @@
 // Checklist (to be used in sidebar)
 eui-checklist, eui-singleselect {
-	ul {
+	.sidebar-list {
 		li {
-			border-bottom:1px solid $color-grey-light;
-			cursor: pointer;
+			
 
 			input {
 				display: none;
 			}
-			.label {
-				font-weight: 400;
-				color: $font-color;
-				font-size: inherit;
-				padding: 0;
+			.list-item {
+				cursor: pointer;
+				width: 100%;
+				border-bottom:1px solid $color-grey-light;
+				padding: 3px 10px;
+				margin: 0;
 
-				.remove {
-					display: none;
-				}
 				.add {
 					display: inline-block;
 				}
+				.remove {
+					display: none;
+				}
 			}
-			input:checked + .label {
-				font-weight: bold;
+			.list-item:hover {
+				background-color: $color-grey-light;
 			}
-			input:checked + .label .remove {
-				display: inline-block;
-			}
-			input:checked + .label .add {
-				display: none;
+			.list-item.active {
+				background-color: #333;
+				color: #fff;
+
+				.add {
+					display: none;
+				}
+				.remove {
+					display: inline-block
+				}
 			}
 		}
 	}

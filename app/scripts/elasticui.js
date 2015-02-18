@@ -1018,14 +1018,12 @@ var elasticui;
                     };
 
                     directive.template = '\
-            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
+            <ul class="nav nav-list sidebar-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size).minDocCount(0)">\
                 <li ng-repeat="bucket in aggResult.buckets">\
-                    <label class="checkbox" eui-filter="ejs.TermsFilter(field, bucket.key)">\
-                        <input type="checkbox" ng-model="filter.enabled">\
-                        <span class="label">{{bucket.key}} ({{bucket.doc_count}})\
+                    <label class="list-item" ng-class="{active:filter.enabled}" eui-filter="ejs.TermsFilter(field, bucket.key)" ng-click="filter.enabled=!filter.enabled">\
+                        {{bucket.key}} ({{bucket.doc_count}})\
                             <span class="pull-right glyphicon glyphicon-plus add" aria-hidden="true"></span>\
                             <span class="pull-right glyphicon glyphicon-minus remove" aria-hidden="true"></span>\
-                        </span>\
                     </label>\
                 </li>\
                 <a ng-click="size=999" ng-show="(size <= aggResult.buckets.length) && size!==0">Visa alla</a>\
@@ -1095,15 +1093,18 @@ var elasticui;
                     };
 
                     directive.template = '\
-            <ul class="nav nav-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)" eui-filter-self="false">\
+            <ul class="nav nav-list sidebar-list" eui-aggregation="ejs.TermsAggregation(agg_name).field(field).size(size)" eui-filter-self="false">\
                 <li ng-repeat="bucket in aggResult.buckets">\
-                    <label eui-filter="ejs.TermsFilter(field, bucket.key)" eui-single-filter="true">\
-                        <span ng-if="!filter.enabled"><a href="" ng-click="filter.enabled=true">{{bucket.key}} <span class="muted doc-count">({{bucket.doc_count}})</span></a></span>\
-                        <span ng-if="filter.enabled">{{bucket.key}} <a href="" ng-click="filter.enabled=false" class="facet-remove">x</a></span>\
+                    <label class="list-item" ng-class="{active:filter.enabled}" eui-filter="ejs.TermsFilter(field, bucket.key)" eui-single-filter="true" ng-click="filter.enabled=!filter.enabled">\
+                        {{bucket.key}} <span class="muted doc-count">({{bucket.doc_count}})</span>\
                     </label>\
                 </li>\
             </ul>';
 
+/*
+<span class="label" ng-if="!filter.enabled"></span>\
+<span class="label" ng-if="filter.enabled"><a href="" class="facet-remove">{{bucket.key}} x</a></span>\
+*/
                     return directive;
                 }
                 SingleselectDirective.$inject = ['$parse'];
