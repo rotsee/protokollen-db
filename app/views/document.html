@@ -16,6 +16,10 @@
 					<td>{{ document._source.last_updated | date : format : 'yyyy-MM-dd' }}</td>
 				</tr>
 				<tr>
+					<td><strong>Dokumenttyp:</strong></td>
+					<td>{{ document._source.document_type }}</td>
+				</tr>
+				<tr>
 					<td><strong>Samma möte:</strong></td>
 					<td>
 						<div ng-repeat="doc in otherDocs">
